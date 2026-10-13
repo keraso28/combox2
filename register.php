@@ -22,23 +22,17 @@
     $local_res = pg_query($local_conn, $sql);
     $supa_res = pg_query($supa_conn, $sql);
 
-    if($local_res){
-        echo "User has been created successfully into local database !!!<br>";
-    } else{
-        echo "User hasn't been created into local database !!! <br>";
+    if($local_res && $supa_res){
+        echo "<script>
+                alert('User has been created successfully!');
+                window.location.href = 'login.html';
+              </script>";
+        exit();
+    } else {
+        echo "<script>
+                alert('Error: User hasn\'t been created.');
+                window.location.href = 'register.html';
+              </script>";
+        exit();
     }
-
-    if($supa_res){
-        echo "User has been created successfully into supabase database !!!<br>";
-    } else{
-        echo "User hasn't been created into supabase database !!!<br>";
-    }
-
-    /*
-    echo "Firstname is: ". $f_name;
-    echo "<br>Lastname is: ". $l_name;
-    echo "<br>Mobile Phone is: ". $m_phone;
-    echo "<br>E-mail is: ". $e_mail;
-    echo "<br>Password is: ". $p_assword;
-    */
 ?>
