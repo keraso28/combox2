@@ -9,13 +9,14 @@
     $e_mail=$_POST['email'];
     $p_assword=$_POST['psw'];
 
-    // AGREGADO: Incluimos creaded_at y updated_at con NOW() para evitar bloqueos de campos obligatorios
+    $hashed_password = password_hash($p_assword, PASSWORD_DEFAULT);
+
     $sql = "
         INSERT INTO users (
             firstname, lastname, mobile_phone, email, password
         )
         VALUES(
-            '$f_name', '$l_name', '$m_phone', '$e_mail', '$p_assword'
+            '$f_name', '$l_name', '$m_phone', '$e_mail', '$hashed_password'
         )
     ";
 
